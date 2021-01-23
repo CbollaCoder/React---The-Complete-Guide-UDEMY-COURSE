@@ -24,11 +24,15 @@ class App extends Component {
     });
   };
 
-//click=this.switchNameHandler is a property making reference
-//to the switchNameHandler method.
-//You can pass methods also as props so that you can call a method which change the state in another component which doesn’t have direct access to the state
-// BIND METHOD
-//
+nameChangeHandler = (event) => {
+  this.setState({
+    persons:[
+      {name: 'Max', age:28},
+      { name: event.target.value, age: 29 },
+      { name: 'Stephanie', age: 27 }
+    ]
+  })
+}
 
   render() {
     return (
@@ -44,6 +48,7 @@ class App extends Component {
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
           click={this.switchNameHandler.bind(this,'Max!')}
+          changed = {this.nameChangeHandler}
         >
           My Hobbies: Racing
         </Person>
