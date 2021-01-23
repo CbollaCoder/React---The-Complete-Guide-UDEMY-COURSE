@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
+//There is two ways of adding styling
+
 class App extends Component {
   state = {
     persons: [
