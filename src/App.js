@@ -3,6 +3,9 @@ import './App.css';
 import Person from './Person/Person';
 
 //There is two ways of adding styling
+//1. By adding a css class
+//2. IN-LINE: By adding a prop in the based-class component but there are some restrictions of not being able to leverage the full power css.
+//3. Global in the App.css
 
 class App extends Component {
   state = {
@@ -37,11 +40,21 @@ nameChangeHandler = (event) => {
 }
 
   render() {
+    const style= {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={() => this.switchNameHandler('Maximilian!!!')}>Switch Name</button>
+        <button
+          style={style} 
+          onClick={() => this.switchNameHandler('Maximilian!!!')}>Switch Name</button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
