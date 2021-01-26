@@ -45,7 +45,6 @@ togglePersonHandler = (event) => {
   this.setState({showPersons: !doesShow});
 }
 
-
   render() {
     const style= {
       backgroundColor: 'white',
@@ -55,6 +54,30 @@ togglePersonHandler = (event) => {
       cursor: 'pointer'
     };
 
+    let persons = null;
+    if(this.state.showPersons){
+      persons = (
+        <div>
+          <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+          />
+          <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler.bind(this,'Max!')}
+          changed = {this.nameChangeHandler}
+          >
+          My Hobbies: Racing
+          </Person>
+          <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+          />
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
@@ -62,28 +85,7 @@ togglePersonHandler = (event) => {
         <button
           style={style} 
           onClick={this.togglePersonHandler}>Toggle Persons</button>
-          {
-            this.state.showPersons == true ?
-            <div >
-               <Person
-                name={this.state.persons[0].name}
-                age={this.state.persons[0].age}
-                />
-                <Person
-                name={this.state.persons[1].name}
-                age={this.state.persons[1].age}
-                click={this.switchNameHandler.bind(this,'Max!')}
-                changed = {this.nameChangeHandler}
-                >
-                My Hobbies: Racing
-                </Person>
-                <Person
-                name={this.state.persons[2].name}
-                age={this.state.persons[2].age}
-                />
-            </div> : null
-          }
-
+          {persons}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
