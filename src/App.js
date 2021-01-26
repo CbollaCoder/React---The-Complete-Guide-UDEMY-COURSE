@@ -4,7 +4,7 @@ import Person from './Person/Person';
 
 //There is two ways of adding styling
 //1. By adding a css class
-//2. IN-LINE: By adding a prop in the based-class component but there are some restrictions of not being able to leverage the full power css.
+//2. INLINE STYLES: By adding a prop in the based-class component but there are some restrictions of not being able to leverage the full power css.
 //3. Global in the App.css
 
 class App extends Component {
@@ -14,7 +14,8 @@ class App extends Component {
       { name: 'Manu', age: 29 },
       { name: 'Stephanie', age: 26 }
     ],
-    otherState: 'some other value'
+    otherState: 'some other value',
+    showPersons: false
   };
 
   switchNameHandler = (newName) => {
@@ -39,6 +40,12 @@ nameChangeHandler = (event) => {
   })
 }
 
+togglePersonHandler = (event) => {
+  const doesShow = this.state.showPersons;
+  this.setState({showPersons: !doesShow});
+}
+
+
   render() {
     const style= {
       backgroundColor: 'white',
@@ -54,23 +61,29 @@ nameChangeHandler = (event) => {
         <p>This is really working!</p>
         <button
           style={style} 
-          onClick={() => this.switchNameHandler('Maximilian!!!')}>Switch Name</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this,'Max!')}
-          changed = {this.nameChangeHandler}
-        >
-          My Hobbies: Racing
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
+          onClick={this.togglePersonHandler}>Toggle Persons</button>
+          {
+            this.state.showPersons == true ?
+            <div >
+               <Person
+                name={this.state.persons[0].name}
+                age={this.state.persons[0].age}
+                />
+                <Person
+                name={this.state.persons[1].name}
+                age={this.state.persons[1].age}
+                click={this.switchNameHandler.bind(this,'Max!')}
+                changed = {this.nameChangeHandler}
+                >
+                My Hobbies: Racing
+                </Person>
+                <Person
+                name={this.state.persons[2].name}
+                age={this.state.persons[2].age}
+                />
+            </div> : null
+          }
+
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
