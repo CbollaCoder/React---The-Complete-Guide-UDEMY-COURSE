@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-//There is two ways of adding styling
-//1. By adding a css class
-//2. INLINE STYLES: By adding a prop in the based-class component but there are some restrictions of not being able to leverage the full power css.
-//3. Global in the App.css
-
 class App extends Component {
 
   state = {
@@ -35,7 +30,6 @@ nameChangeHandler = (event, id) => {
   persons[personIndex] = person;
 
   this.setState( {persons: persons} );
-
 }
 
 deletePersonHandler = (personIndex) => {
@@ -54,7 +48,8 @@ togglePersonHandler = (event) => {
 
   render() {
     const style= {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -62,6 +57,7 @@ togglePersonHandler = (event) => {
     };
 
     let persons = null;
+
     if(this.state.showPersons){
       persons = (
         <div>
@@ -76,6 +72,8 @@ togglePersonHandler = (event) => {
             })}
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
 
     return (
