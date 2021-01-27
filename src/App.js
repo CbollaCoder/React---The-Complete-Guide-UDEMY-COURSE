@@ -29,10 +29,13 @@ nameChangeHandler = (event) => {
 }
 
 deletePersonHandler = (personIndex) => {
-  const persons = this.state.persons;
+  //const persons = this.state.persons.slice(); //slide method creates a copy of the persons array before manipulating it.
+  const persons = [...this.state.persons]; // a new array with the objects from the old array but not the old array itself.
   persons.splice(personIndex, 1); //removes 1 element from the array
   this.setState({persons: persons});
 }
+// Important: always update state in an inmutable fashion without mutating the original state first.
+//Create a copy and then update the state with said state.
 
 togglePersonHandler = (event) => {
   const doesShow = this.state.showPersons;
