@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Radium from 'radium'; // IMPORT RADIUM
 
 class App extends Component {
 
@@ -38,13 +39,14 @@ deletePersonHandler = (personIndex) => {
   persons.splice(personIndex, 1); //removes 1 element from the array
   this.setState({persons: persons});
 }
-// Important: always update state in an inmutable fashion without mutating the original state first.
-//Create a copy and then update the state with said state.
 
 togglePersonHandler = (event) => {
   const doesShow = this.state.showPersons;
   this.setState({showPersons: !doesShow});
 }
+
+//In order to install RADIUM:
+//Run: npm install --save radium --legacy-peer-deps
 
   render() {
     const style= {
@@ -53,7 +55,11 @@ togglePersonHandler = (event) => {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover':{
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -74,7 +80,11 @@ togglePersonHandler = (event) => {
       );
 
       style.backgroundColor = 'red';
+      style[':hover']= {
+        backgroundColor: 'salmon',
+        color: 'black'
     }
+  }
 
     let classes = [];
     if (this.state.persons.length <=2){
@@ -98,4 +108,4 @@ togglePersonHandler = (event) => {
   }
 }
 
-export default App;
+export default Radium(App);
