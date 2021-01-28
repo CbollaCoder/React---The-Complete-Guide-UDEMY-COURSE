@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium'; // IMPORT RADIUM
+import Radium, {StyleRoot} from 'radium'; // IMPORT RADIUM
 
 class App extends Component {
 
@@ -95,6 +95,7 @@ togglePersonHandler = (event) => {
     }
 
     return (
+      <StyleRoot>
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(' ')}> This is really working! </p>
@@ -103,6 +104,7 @@ togglePersonHandler = (event) => {
           onClick={this.togglePersonHandler}>Toggle Persons</button>
           {persons}
       </div>
+      </StyleRoot>
     );
     
   }
