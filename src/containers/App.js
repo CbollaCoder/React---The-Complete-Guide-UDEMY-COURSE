@@ -27,9 +27,9 @@ class App extends Component {
     return state;
   }
 
-  componentWillMount(){
+ /*componentWillMount(){
     console.log('[App.js] componentWillMount');
-  }
+  }*/
 
   componentDidMount(){
     console.log('[App.js] componentDidMount');
@@ -84,6 +84,7 @@ togglePersonHandler = (event) => {
     return (
       <div className={classes.App}>
           <Cockpit 
+            title={this.props.appTitle}
             showPersons={this.state.showPersons}
             persons = {this.state.persons}
             clicked = {this.togglePersonHandler} />
