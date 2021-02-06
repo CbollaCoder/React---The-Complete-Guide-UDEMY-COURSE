@@ -31,10 +31,22 @@ class App extends Component {
     console.log('[App.js] componentWillMount');
   }*/
 
+//IMPORTANT: fetch data from a server
   componentDidMount(){
     console.log('[App.js] componentDidMount');
 }
 
+//IMPORTANT
+shouldComponentUpdate(nextProps, nextState){
+  console.log('[App.js] shouldComponentUpdate');
+  return true;
+}
+
+componentDidUpdate(){
+  console.log('[App.js] componentDidUpdate');
+}
+
+//IMPORTANT:fetch data from a server
 nameChangeHandler = (event, id) => {
   const personIndex = this.state.persons.findIndex(p => {
     return p.id === id;
