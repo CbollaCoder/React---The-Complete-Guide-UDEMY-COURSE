@@ -9,9 +9,18 @@ const Cockpit = (props) => {
 		setTimeout (() => {
 			alert('Saved data tou cloud!');
 		}, 1000);
+		return () => {
+			console.log('[Cockpit.js] cleanup work is useEffect');
+		};
 	}, []); 
 
-	//useEffect();
+
+	useEffect(() =>{
+		console.log('[Cockpit.js] 2nd useEffect');
+		return () => {
+			console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+		};
+	});
 
 	const assignedClasses = [];
 	let btnClass = '';
